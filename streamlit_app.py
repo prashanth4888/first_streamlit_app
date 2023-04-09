@@ -33,8 +33,8 @@ streamlit.dataframe(fruityvice_normalized)
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("select * from fruit_load_list")
-add_my_fruit = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index),['Kiwi'])
-fruits_to_show = my_fruit_list.loc[add_my_fruit]
+#add_my_fruit = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index),['Kiwi'])
+#fruits_to_show = my_fruit_list.loc[add_my_fruit]
 my_data_row = my_cur.fetchall()
 streamlit.header("The fruit load list contans: ")
 streamlit.dataframe(my_data_row)
