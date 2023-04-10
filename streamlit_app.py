@@ -25,7 +25,7 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon"
 def get_fruityvice_data(this_fruit_choice):
   fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
   fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-  return streamlit.dataframe(fruityvice_normalized)
+  return fruityvice_normalized
 
 streamlit.header("Fruityvice Fruit Advice!")
 try:
@@ -36,8 +36,8 @@ try:
     back_from_function = get_fruityvice_data(fruit_choice)
     streamlit.dataframe(back_from_function)
     
-except URLError:
-  streamlit.error("Error")
+except URLError as e:
+    streamlit.error("Error")
 
 streamlit.header("The fruit load list contains:")
 def get_fruit_load_list():
